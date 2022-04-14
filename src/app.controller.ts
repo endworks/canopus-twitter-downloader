@@ -8,7 +8,7 @@ export class AppController {
   private readonly logger = new Logger('TwitterDownloaderController');
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern('bus/station', Transport.TCP)
+  @MessagePattern('getMediaUrls', Transport.TCP)
   async getMediaUrls(@Payload() data: TweetMediaPayload) {
     return this.appService.getMediaUrls(data.tweetId).catch((ex) => {
       this.logger.error(ex.message);
