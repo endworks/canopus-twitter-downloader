@@ -4,6 +4,10 @@ export interface ErrorResponse {
   error: string;
 }
 
+export class TweetMediaPayload {
+  tweetId: number;
+}
+
 export class TweetMediaResults {
   mediaUrls: string[];
 }
