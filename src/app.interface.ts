@@ -5,9 +5,10 @@ export interface ErrorResponse {
 }
 
 export class TweetMediaPayload {
-  tweetId: number;
+  tweetId: string;
 }
 
 export class TweetMediaResults {
+  tweetUrl: string;
   mediaUrls: string[];
 }
