@@ -21,7 +21,12 @@ export class AppService {
         if (media.type === 'photo') {
           mediaUrls.push(media.media_url);
         } else if (media.type === 'video' || media.type === 'animated_gif') {
-          mediaUrls.push(media.video_info.variants[0].url);
+          media.video_info.variants.every((variant) => {
+            if (variant.url.includes('.mp4')) {
+              mediaUrls.push(variant.url);
+              return false;
+            }
+          });
         }
       });
       return { tweetUrl, mediaUrls };
