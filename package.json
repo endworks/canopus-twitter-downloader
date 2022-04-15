@@ -1,6 +1,6 @@
 {
   "name": "canopus-twitter-downloader",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "just get media urls from tweets without bullshit",
   "author": {
     "name": "ender-null",
