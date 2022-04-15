@@ -14,16 +14,14 @@ export class AppService {
     try {
       const twitterClient = new TwitterApi(process.env.TWITTER_CLIENT_TOKEN);
       const roClient = twitterClient.readOnly;
-      const tweet = await roClient.v2.tweets(tweetId, {
-        expansions: ['attachments.media_keys', 'author_id'],
-        'media.fields': ['url', 'media_key', 'preview_image_url', 'type'],
-        'user.fields': ['name'],
-      });
-      const tweetUrl = `https://twitter.com/${tweet.includes.users[0].username}/status/${tweet.data[0].id}`;
+      const tweet = await roClient.v1.singleTweet(tweetId);
+      const tweetUrl = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id}`;
       const mediaUrls = [];
-      tweet.includes.media.forEach((media) => {
+      tweet.extended_entities.media.forEach((media) => {
         if (media.type === 'photo') {
-          mediaUrls.push(media.url);
+          mediaUrls.push(media.media_url);
+        } else if (media.type === 'video' || media.type === 'animated_gif') {
+          mediaUrls.push(media.video_info.variants[0].url);
         }
       });
       return { tweetUrl, mediaUrls };
