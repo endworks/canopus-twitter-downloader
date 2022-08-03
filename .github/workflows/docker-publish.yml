@@ -101,4 +101,4 @@ jobs:
             docker pull ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:latest
             docker stop ${{ env.IMAGE_NAME }}
             docker rm ${{ env.IMAGE_NAME }}
-            docker run --network canopus -p 8876:8876/tcp -e TWITTER_CLIENT_TOKEN='${{ secrets.TWITTER_CLIENT_TOKEN }}' -ti -d --restart unless-stopped --name ${{ env.IMAGE_NAME }} ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+            docker run --network canopus -p 8876:3000/tcp -e TWITTER_CLIENT_TOKEN='${{ secrets.TWITTER_CLIENT_TOKEN }}' -ti -d --restart unless-stopped --name ${{ env.IMAGE_NAME }} ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
